@@ -81,3 +81,15 @@ let booksData = [
       "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up.",
   },
 ];
+
+for (let i = 0; i < booksData.length; i++) {
+  let bookItem = document.createElement("div");
+  bookItem.className = "book-item";
+  bookItem.innerHTML = `<img src="${booksData[i].imageLink}" alt="book title" />
+      <div class="book-info">
+        <h2 class="title">${booksData[i].title}</h2>
+        <h3 class="author">${booksData[i].author}</h3>
+        <p class="price">${booksData[i].price}$</p>
+      </div>`;
+  document.body.append(bookItem);
+}
