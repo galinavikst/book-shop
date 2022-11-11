@@ -2,7 +2,7 @@ let booksData = [
   {
     author: "Douglas Crockford",
     imageLink: "./media/img/JavaScript-The-Good-Parts.jpg",
-    title: "JavaScript: The Good Parts: The Good Parts",
+    title: "JavaScript: The Good Parts",
     price: 30,
     description:
       "With JavaScript: The Good Parts, you'll discover a beautiful, elegant, lightweight and highly expressive language that lets you create effective code, whether you're managing object libraries or just trying to get Ajax to run fast. If you develop sites or applications for the Web, this book is an absolute must",
@@ -81,15 +81,47 @@ let booksData = [
       "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up.",
   },
 ];
+let body = document.body;
+body.className = "page";
 
 for (let i = 0; i < booksData.length; i++) {
+  let fragment = new DocumentFragment();
   let bookItem = document.createElement("div");
   bookItem.className = "book-item";
-  bookItem.innerHTML = `<img src="${booksData[i].imageLink}" alt="book title" />
-      <div class="book-info">
-        <h2 class="title">${booksData[i].title}</h2>
-        <h3 class="author">${booksData[i].author}</h3>
-        <p class="price">${booksData[i].price}$</p>
-      </div>`;
-  document.body.append(bookItem);
+  let bookImg = document.createElement("img");
+  bookImg.className = "book-img";
+  bookImg.alt = "book title";
+  bookImg.src = booksData[i].imageLink;
+  bookItem.append(bookImg);
+  let bookInfo = document.createElement("div");
+  bookInfo.className = "book-info";
+  let bookTitle = document.createElement("h2");
+  bookTitle.className = "title";
+  bookTitle.innerHTML = booksData[i].title;
+  let author = document.createElement("h3");
+  author.className = "author";
+  author.innerHTML = booksData[i].author;
+  let price = document.createElement("p");
+  price.className = "price";
+  price.innerHTML = booksData[i].price + `$`;
+  let showMoreBtn = document.createElement("button");
+  showMoreBtn.className = "descript-btn";
+  showMoreBtn.innerHTML = "Show more";
+  let description = document.createElement("p");
+  description.className = "description";
+  description.innerHTML = booksData[i].description;
+  let addBagBtn = document.createElement("button");
+  addBagBtn.className = "bag-btn";
+  addBagBtn.innerHTML = "Add to bag";
+
+  bookInfo.append(bookTitle);
+  bookInfo.append(author);
+  bookInfo.append(price);
+  bookInfo.append(description);
+  bookInfo.append(showMoreBtn);
+  bookInfo.append(addBagBtn);
+  bookItem.append(bookInfo);
+
+  fragment.append(bookItem);
+  body.append(fragment);
 }
