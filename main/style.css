@@ -5,6 +5,13 @@
 .page {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   padding: 50px 200px;
+  background: rgb(245, 250, 240);
+}
+.book-item {
+  display: flex;
+}
+.img-container {
+  height: 550px;
 }
 .book-img {
   width: 350px;

@@ -50,7 +50,7 @@ let booksData = [
   },
   {
     author: "Alex Banks, Eve Porcello",
-    imageLink: "./media/img/Learning-React,-2nd-Edition.jpg",
+    imageLink: "./media/img/Learning-React-2nd-Edition.jpg",
     title: "Learning React, 2nd Edition",
     price: 25,
     description:
@@ -81,18 +81,20 @@ let booksData = [
       "Secrets of the Javascript Ninja takes you on a journey towards mastering modern JavaScript development in three phases: design, construction, and maintenance. Written for JavaScript developers with intermediate-level skills, this book will give you the knowledge you need to create a cross-browser JavaScript library from the ground up.",
   },
 ];
-let body = document.body;
-body.className = "page";
+document.body.className = "page";
+let fragment = new DocumentFragment();
+let ul = document.createElement("ul");
+ul.className = "book-list";
 
 for (let i = 0; i < booksData.length; i++) {
-  let fragment = new DocumentFragment();
-  let bookItem = document.createElement("div");
+  let bookItem = document.createElement("li");
   bookItem.className = "book-item";
+  let imgContainer = document.createElement("div");
+  imgContainer.className = "img-container";
   let bookImg = document.createElement("img");
   bookImg.className = "book-img";
   bookImg.alt = "book title";
   bookImg.src = booksData[i].imageLink;
-  bookItem.append(bookImg);
   let bookInfo = document.createElement("div");
   bookInfo.className = "book-info";
   let bookTitle = document.createElement("h2");
@@ -113,15 +115,16 @@ for (let i = 0; i < booksData.length; i++) {
   let addBagBtn = document.createElement("button");
   addBagBtn.className = "bag-btn";
   addBagBtn.innerHTML = "Add to bag";
-
+  imgContainer.append(bookImg);
   bookInfo.append(bookTitle);
   bookInfo.append(author);
   bookInfo.append(price);
   bookInfo.append(description);
   bookInfo.append(showMoreBtn);
   bookInfo.append(addBagBtn);
+  bookItem.append(imgContainer);
   bookItem.append(bookInfo);
-
-  fragment.append(bookItem);
-  body.append(fragment);
+  ul.append(bookItem);
 }
+fragment.append(ul);
+document.body.append(fragment);
