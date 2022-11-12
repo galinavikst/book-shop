@@ -97,6 +97,8 @@ for (let i = 0; i < booksData.length; i++) {
   bookImg.src = booksData[i].imageLink;
   let bookInfo = document.createElement("div");
   bookInfo.className = "book-info";
+  let info = document.createElement("div");
+  info.className = "info";
   let bookTitle = document.createElement("h2");
   bookTitle.className = "title";
   bookTitle.innerHTML = booksData[i].title;
@@ -116,10 +118,11 @@ for (let i = 0; i < booksData.length; i++) {
   addBagBtn.className = "bag-btn";
   addBagBtn.innerHTML = "Add to bag";
   imgContainer.append(bookImg);
-  bookInfo.append(bookTitle);
-  bookInfo.append(author);
-  bookInfo.append(price);
-  bookInfo.append(description);
+  info.append(bookTitle);
+  info.append(author);
+  info.append(price);
+  info.append(description);
+  bookInfo.append(info);
   bookInfo.append(showMoreBtn);
   bookInfo.append(addBagBtn);
   bookItem.append(imgContainer);
