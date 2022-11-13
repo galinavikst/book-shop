@@ -88,7 +88,13 @@ h1.className = "page-title";
 h1.innerHTML = "Book catalog";
 let ul = document.createElement("ul");
 ul.className = "book-list";
+let confirmOrderLink = document.createElement("a");
+confirmOrderLink.className = "confirm-order-link";
+confirmOrderLink.innerHTML = "Confirm order";
+confirmOrderLink.setAttribute("href", "./order-page/order.html");
+
 document.body.append(h1);
+document.body.append(confirmOrderLink);
 
 for (let i = 0; i < booksData.length; i++) {
   let bookItem = document.createElement("li");
@@ -149,16 +155,15 @@ console.log(showMoreArr);
 for (let i = 0; i < showMoreArr.length; i++) {
   showMoreArr[i].addEventListener("click", popup);
   function popup() {
-    showMoreArr[i].nextSibling.classList.toggle("open");
+    showMoreArr[i].nextSibling.classList.add("open");
   }
 }
 
-let closeBtn = document.querySelectorAll(".close-btn");
-console.log(closeBtn);
-for (let i = 0; i < closeBtn.length; i++) {
-  closeBtn[i].addEventListener("click", popup);
-  console.log(closeBtn[i].parentElement);
+let closeBtnArr = document.querySelectorAll(".close-btn");
+console.log(closeBtnArr);
+for (let i = 0; i < closeBtnArr.length; i++) {
+  closeBtnArr[i].addEventListener("click", popup);
   function popup() {
-    closeBtn[i].parentElement.classList.toggle("open");
+    closeBtnArr[i].parentElement.classList.toggle("open");
   }
 }

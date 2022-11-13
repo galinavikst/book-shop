@@ -7,9 +7,14 @@
   padding: 50px 200px;
   background: rgb(245, 250, 240);
 }
+.confirm-order-link {
+  text-align: end;
+  padding: 15px;
+  display: block;
+  text-decoration: none;
+}
 .page-title {
   text-align: center;
-  margin: 0 0 80px;
   color: rgb(245, 250, 240);
   background: black;
 }
@@ -39,11 +44,23 @@
 }
 .description-box {
   display: none;
+  background: black;
+  position: absolute;
+  width: 450px;
+  padding: 10px;
+  border-radius: 4px;
+  height: 300px;
+  color: whitesmoke;
+  top: 1;
 }
 .description {
 }
 .bag-btn {
   display: block;
+}
+.close-btn {
+  padding: 10px;
+  margin-top: 40px;
 }
 .open {
   display: block;
