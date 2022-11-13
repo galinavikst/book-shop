@@ -7,12 +7,19 @@
   padding: 50px 200px;
   background: rgb(245, 250, 240);
 }
+.page-title {
+  text-align: center;
+  margin: 0 0 80px;
+  color: rgb(245, 250, 240);
+  background: black;
+}
 .book-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-column-gap: 50px;
   grid-row-gap: 60px;
 }
+
 .book-item {
   display: flex;
 }
@@ -30,10 +37,14 @@
   flex-direction: column;
   justify-content: space-around;
 }
-
-.description {
+.description-box {
   display: none;
 }
+.description {
+}
 .bag-btn {
+  display: block;
+}
+.open {
   display: block;
 }

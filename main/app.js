@@ -83,8 +83,12 @@ let booksData = [
 ];
 document.body.className = "page";
 let fragment = new DocumentFragment();
+let h1 = document.createElement("h1");
+h1.className = "page-title";
+h1.innerHTML = "Book catalog";
 let ul = document.createElement("ul");
 ul.className = "book-list";
+document.body.append(h1);
 
 for (let i = 0; i < booksData.length; i++) {
   let bookItem = document.createElement("li");
@@ -109,21 +113,29 @@ for (let i = 0; i < booksData.length; i++) {
   price.className = "price";
   price.innerHTML = booksData[i].price + `$`;
   let showMoreBtn = document.createElement("button");
-  showMoreBtn.className = "descript-btn";
+  showMoreBtn.className = "show-more-btn";
   showMoreBtn.innerHTML = "Show more";
+  let descriptionBox = document.createElement("div");
+  descriptionBox.className = "description-box";
   let description = document.createElement("p");
   description.className = "description";
   description.innerHTML = booksData[i].description;
+  let closeBtn = document.createElement("button");
+  closeBtn.classList = "close-btn";
+  closeBtn.innerHTML = "Close";
   let addBagBtn = document.createElement("button");
   addBagBtn.className = "bag-btn";
   addBagBtn.innerHTML = "Add to bag";
   imgContainer.append(bookImg);
+  descriptionBox.append(bookTitle.cloneNode(1));
+  descriptionBox.append(description);
+  descriptionBox.append(closeBtn);
   info.append(bookTitle);
   info.append(author);
   info.append(price);
-  info.append(description);
+  info.append(showMoreBtn);
+  info.append(descriptionBox);
   bookInfo.append(info);
-  bookInfo.append(showMoreBtn);
   bookInfo.append(addBagBtn);
   bookItem.append(imgContainer);
   bookItem.append(bookInfo);
@@ -131,3 +143,22 @@ for (let i = 0; i < booksData.length; i++) {
 }
 fragment.append(ul);
 document.body.append(fragment);
+
+let showMoreArr = document.querySelectorAll(".show-more-btn");
+console.log(showMoreArr);
+for (let i = 0; i < showMoreArr.length; i++) {
+  showMoreArr[i].addEventListener("click", popup);
+  function popup() {
+    showMoreArr[i].nextSibling.classList.toggle("open");
+  }
+}
+
+let closeBtn = document.querySelectorAll(".close-btn");
+console.log(closeBtn);
+for (let i = 0; i < closeBtn.length; i++) {
+  closeBtn[i].addEventListener("click", popup);
+  console.log(closeBtn[i].parentElement);
+  function popup() {
+    closeBtn[i].parentElement.classList.toggle("open");
+  }
+}
