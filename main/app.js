@@ -86,15 +86,25 @@ let fragment = new DocumentFragment();
 let h1 = document.createElement("h1");
 h1.className = "page-title";
 h1.innerHTML = "Book catalog";
+let contentBox = document.createElement("div");
+contentBox.className = "content-box";
 let ul = document.createElement("ul");
 ul.className = "book-list";
+let bagBox = document.createElement("div");
+bagBox.className = "bag-box";
+let bagTitle = document.createElement("p");
+bagTitle.className = "bag-title";
+bagTitle.innerHTML = "My bag";
 let confirmOrderLink = document.createElement("a");
 confirmOrderLink.className = "confirm-order-link";
 confirmOrderLink.innerHTML = "Confirm order";
 confirmOrderLink.setAttribute("href", "./order-page/order.html");
 
 document.body.append(h1);
-document.body.append(confirmOrderLink);
+contentBox.append(ul);
+contentBox.append(bagBox);
+bagBox.append(bagTitle);
+bagBox.append(confirmOrderLink);
 
 for (let i = 0; i < booksData.length; i++) {
   let bookItem = document.createElement("li");
@@ -147,7 +157,8 @@ for (let i = 0; i < booksData.length; i++) {
   bookItem.append(bookInfo);
   ul.append(bookItem);
 }
-fragment.append(ul);
+fragment.append(contentBox);
+
 document.body.append(fragment);
 
 let showMoreArr = document.querySelectorAll(".show-more-btn");
