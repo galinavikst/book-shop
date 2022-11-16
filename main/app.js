@@ -90,7 +90,8 @@ let contentBox = document.createElement("div");
 contentBox.className = "content-box";
 let ul = document.createElement("ul");
 ul.className = "book-list";
-let bagBox = document.createElement("div");
+
+let bagBox = document.createElement("div"); //bag elements
 bagBox.className = "bag-box";
 let bagTitle = document.createElement("p");
 bagTitle.className = "bag-title";
@@ -99,51 +100,70 @@ let confirmOrderLink = document.createElement("a");
 confirmOrderLink.className = "confirm-order-link";
 confirmOrderLink.innerHTML = "Confirm order";
 confirmOrderLink.setAttribute("href", "./order-page/order.html");
+let bagItem, bagCard, deleteBtn;
+let total = document.createElement("p");
+total.className = "total";
 
 document.body.append(h1);
 contentBox.append(ul);
 contentBox.append(bagBox);
 bagBox.append(bagTitle);
+bagBox.append(total);
 bagBox.append(confirmOrderLink);
 
+let bookItem, // book item elements
+  imgContainer,
+  bookImg,
+  bookInfo,
+  info,
+  bookTitle,
+  author,
+  price,
+  showMoreBtn,
+  descriptionBox,
+  description,
+  closeBtn,
+  addBagBtn;
+
 for (let i = 0; i < booksData.length; i++) {
-  let bookItem = document.createElement("li");
+  bookItem = document.createElement("li");
   bookItem.className = "book-item";
-  let imgContainer = document.createElement("div");
+  imgContainer = document.createElement("div");
   imgContainer.className = "img-container";
-  let bookImg = document.createElement("img");
+  bookImg = document.createElement("img");
   bookImg.className = "book-img";
   bookImg.alt = "book title";
   bookImg.src = booksData[i].imageLink;
-  let bookInfo = document.createElement("div");
+  bookInfo = document.createElement("div");
   bookInfo.className = "book-info";
-  let info = document.createElement("div");
+  info = document.createElement("div");
   info.className = "info";
-  let bookTitle = document.createElement("h2");
+  bookTitle = document.createElement("h2");
   bookTitle.className = "title";
   bookTitle.innerHTML = booksData[i].title;
-  let author = document.createElement("h3");
+  author = document.createElement("h3");
   author.className = "author";
   author.innerHTML = booksData[i].author;
-  let price = document.createElement("p");
+  price = document.createElement("p");
   price.className = "price";
   price.innerHTML = booksData[i].price + `$`;
-  let showMoreBtn = document.createElement("button");
+  showMoreBtn = document.createElement("button");
   showMoreBtn.className = "show-more-btn";
   showMoreBtn.innerHTML = "Show more";
-  let descriptionBox = document.createElement("div");
+  descriptionBox = document.createElement("div");
   descriptionBox.className = "description-box";
-  let description = document.createElement("p");
+  description = document.createElement("p");
   description.className = "description";
   description.innerHTML = booksData[i].description;
-  let closeBtn = document.createElement("button");
+  closeBtn = document.createElement("button");
   closeBtn.classList = "close-btn";
   closeBtn.innerHTML = "Close";
-  let addBagBtn = document.createElement("button");
+  addBagBtn = document.createElement("button");
   addBagBtn.className = "bag-btn";
+  addBagBtn.dataset.title = booksData[i].title;
   addBagBtn.innerHTML = "Add to bag";
   imgContainer.append(bookImg);
-  descriptionBox.append(bookTitle.cloneNode(1));
+  descriptionBox.append(bookTitle.cloneNode(true));
   descriptionBox.append(description);
   descriptionBox.append(closeBtn);
   info.append(bookTitle);
@@ -177,4 +197,60 @@ for (let i = 0; i < closeBtnArr.length; i++) {
   function popup() {
     closeBtnArr[i].parentElement.classList.toggle("open");
   }
+}
+
+let bagBtnArr = document.querySelectorAll(".bag-btn");
+document
+  .querySelector(".content-box")
+  .addEventListener("click", function (event) {
+    let btn = event.target; //where was click
+    if (!btn.dataset.title) {
+      return; //check if book exist
+    }
+    for (let book of booksData) {
+      if (btn.dataset.title === book.title) {
+        createBagItem(book);
+      }
+    }
+  });
+
+function createBagItem(obj) {
+  let bagObj = {};
+  bagObj.title = obj.title;
+  bagObj.author = obj.author;
+  bagObj.price = obj.price;
+
+  bagItem = document.createElement("div");
+  bagItem.className = "bag-item";
+
+  bagCard = document.createElement("div");
+  bagCard.className = "bag-card";
+  bagCard.innerHTML = `${obj.author}<br/>${obj.title}<br/><span id="${obj.price}">${obj.price}</span>$`;
+
+  deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
+  deleteBtn.innerHTML = `&#10006;`;
+  bagItem.append(bagCard);
+  bagItem.append(deleteBtn);
+  bagBox.insertBefore(bagItem, total);
+  getTotal(obj.price);
+  deleteItem();
+}
+
+let amount = 0;
+function deleteItem() {
+  let deleteBtnArr = document.querySelectorAll(".delete-btn");
+  for (let btn of deleteBtnArr) {
+    btn.onclick = () => {
+      btn.parentElement.remove();
+      let parentDiv = btn.parentElement;
+      let colectionItem = parentDiv.getElementsByTagName("span").item(0);
+      let bookPrice = colectionItem.innerHTML;
+      getTotal(-bookPrice);
+    };
+  }
+}
+function getTotal(price) {
+  amount += price;
+  total.innerHTML = `Total: ${amount}$`;
 }
