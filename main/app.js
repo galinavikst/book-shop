@@ -128,6 +128,7 @@ let bookItem, // book item elements
 for (let i = 0; i < booksData.length; i++) {
   bookItem = document.createElement("li");
   bookItem.className = "book-item";
+  bookItem.dataset.title = booksData[i].title;
   imgContainer = document.createElement("div");
   imgContainer.className = "img-container";
   bookImg = document.createElement("img");
@@ -200,19 +201,17 @@ for (let i = 0; i < closeBtnArr.length; i++) {
 }
 
 let bagBtnArr = document.querySelectorAll(".bag-btn");
-document
-  .querySelector(".content-box")
-  .addEventListener("click", function (event) {
-    let btn = event.target; //where was click
-    if (!btn.dataset.title) {
-      return; //check if book exist
+contentBox.addEventListener("click", function (event) {
+  let btn = event.target; //where was click
+  if (!btn.dataset.title) {
+    return; //check if book exist
+  }
+  for (let book of booksData) {
+    if (btn.dataset.title === book.title) {
+      createBagItem(book);
     }
-    for (let book of booksData) {
-      if (btn.dataset.title === book.title) {
-        createBagItem(book);
-      }
-    }
-  });
+  }
+});
 
 function createBagItem(obj) {
   let bagObj = {};

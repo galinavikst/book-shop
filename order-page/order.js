@@ -1,9 +1,23 @@
-let confirmH1 = document.createElement("h1");
-confirmH1.className = "confirm-h1";
-confirmH1.innerHTML = "Confirm order";
-let backCatalog = document.createElement("a");
-backCatalog.className = "back-catalog-link";
-backCatalog.innerHTML = "Back to catalog";
-backCatalog.setAttribute("href", "../index.html");
-document.body.append(confirmH1);
-document.body.append(backCatalog);
+const nameInput = document.forms.client.name;
+const surnameInput = document.forms.client.surname;
+
+nameInput.onblur = function () {
+  if (nameInput.value.length <= 4) {
+    nameInput.className = "error";
+  }
+};
+nameInput.onfocus = () => onfocusError(nameInput);
+
+surnameInput.onblur = () => onblurError(surnameInput);
+surnameInput.onfocus = () => onfocusError(surnameInput);
+
+function onblurError(element) {
+  if (element.value.length <= 5) {
+    element.className = "error";
+  }
+}
+function onfocusError(element) {
+  if (element.classList.contains("error")) {
+    element.classList.remove("error");
+  }
+}
