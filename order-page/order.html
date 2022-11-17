@@ -13,23 +13,41 @@
       <h1 class="order-h1">Order form</h1>
 
       <form name="client">
-        <input type="text" name="name" placeholder="Name" required />
-        <input type="text" name="surname" placeholder="Surname" required />
+        <input
+          type="text"
+          name="name"
+          placeholder="Name"
+          required
+          minlength="4"
+        />
+        <input
+          type="text"
+          name="surname"
+          placeholder="Surname"
+          required
+          minlength="5"
+        />
         <input type="date" name="date" />
       </form>
 
-      <address>
-        <input type="text" placeholder="Street" required />
-        <input type="text" placeholder="House number" required /><input
-          type="text"
-          placeholder="Flat number"
-          required
-        />
-      </address>
+      <form action="" name="address">
+        <address>
+          <input
+            type="text"
+            placeholder="Street"
+            name="street"
+            required
+            minlength="5"
+          />
+          <input type="text" placeholder="House number" name="house" required />
+          <input type="text" placeholder="Flat number" name="flat" required />
+        </address>
+      </form>
 
       <div class="radio-btns">
         <div class="card">
-          <label for="">Card</label><input type="radio" name="payment" />
+          <label for="">Card</label
+          ><input type="radio" name="payment" checked />
         </div>
         <div class="cash">
           <label for="">Cash</label> <input type="radio" name="payment" />
