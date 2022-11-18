@@ -28,10 +28,11 @@ houseInput.onblur = function () {
 };
 houseInput.onfocus = () => onfocusError(houseInput);
 
-flatInput.onblur = function () {
-  if (isNaN(flatInput.value) || flatInput.value.startsWith("-"))
+flatInput.addEventListener("input", function (e) {
+  console.log(e.data);
+  if ((isNaN(e.data) && e.data !== "-") || flatInput.value.startsWith("-"))
     flatInput.className = "error";
-};
+});
 flatInput.onfocus = () => onfocusError(flatInput);
 
 dataInput.addEventListener("change", function () {
@@ -48,9 +49,7 @@ function onfocusError(element) {
 }
 
 let giftArr = document.forms.gifts.gift;
-console.log(giftArr);
 giftArr.forEach((input) => (input.onclick = limitCheckb));
-
 function limitCheckb() {
   let giftArr = document.forms.gifts.gift;
   let total = 0;
