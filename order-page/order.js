@@ -29,7 +29,7 @@ houseInput.onblur = function () {
 houseInput.onfocus = () => onfocusError(houseInput);
 
 flatInput.onblur = function () {
-  if (isNaN(flatInput.value) || flatInput.value.startWith("-"))
+  if (isNaN(flatInput.value) || flatInput.value.startsWith("-"))
     flatInput.className = "error";
 };
 flatInput.onfocus = () => onfocusError(flatInput);
@@ -44,5 +44,20 @@ dataInput.onfocus = () => onfocusError(dataInput);
 function onfocusError(element) {
   if (element.classList.contains("error")) {
     element.classList.remove("error");
+  }
+}
+
+let giftArr = document.forms.gifts.gift;
+console.log(giftArr);
+giftArr.forEach((input) => (input.onclick = limitCheckb));
+
+function limitCheckb() {
+  let giftArr = document.forms.gifts.gift;
+  let total = 0;
+  for (let i = 0; i < giftArr.length; i++) {
+    if (giftArr[i].checked) {
+      total += 1;
+    }
+    if (total > 2) return false;
   }
 }

@@ -45,23 +45,30 @@
       </form>
 
       <div class="radio-btns">
-        <div class="card">
-          <label for="">Card</label
-          ><input type="radio" name="payment" checked />
-        </div>
-        <div class="cash">
-          <label for="">Cash</label> <input type="radio" name="payment" />
-        </div>
+        <p>Choose the payment type</p>
+        <label for=""><input type="radio" name="payment" checked />Card</label>
+        <label for=""><input type="radio" name="payment" />Cash</label>
       </div>
 
-      <div class="gifts">
-        <label for="">Choose 2 gifts</label>
-        <button>Pack as a gift</button>
-        <button>Add postcard</button
-        ><button>2% discount to the next order</button
-        ><button>Branded pen or pencil</button>
-      </div>
-      <button disabled>Complete order</button>
+      <form name="gifts">
+        <fieldset>
+          <legend>Choose 2 gifts</legend>
+
+          <label for="">
+            <input type="checkbox" name="gift" />Pack as a gift</label
+          >
+          <label for="">
+            <input type="checkbox" name="gift" />Add postcard</label
+          ><label for=""
+            ><input type="checkbox" name="gift" />2% discount to the next
+            order</label
+          >
+          <label for=""
+            ><input type="checkbox" name="gift" />Branded pen or pencil</label
+          >
+        </fieldset>
+      </form>
+      <button type="submit" disabled>Complete order</button>
     </section>
     <script src="./order.js"></script>
   </body>
