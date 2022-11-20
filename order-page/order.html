@@ -8,30 +8,39 @@
     <link rel="stylesheet" href="./order.css" />
   </head>
   <body>
-    <section class="page">
-      <a href="../index.html" class="back-catalog-link">Back to Catalog</a>
+    <a href="../index.html" class="back-catalog-link">Back to Catalog</a>
+    <form name="form" class="page">
       <h1 class="order-h1">Order form</h1>
 
-      <form name="client">
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          required
-          minlength="4"
-        />
-        <input
-          type="text"
-          name="surname"
-          placeholder="Surname"
-          required
-          minlength="5"
-        />
-        <input type="date" name="date" />
-      </form>
+      <div class="client">
+        <div class="wrapper">
+          <input
+            type="text"
+            name="name"
+            placeholder="Name"
+            required
+            minlength="4"
+          />
+          <span class="error-msg">*The field is invalid</span>
+        </div>
+        <div class="wrapper">
+          <input
+            type="text"
+            name="surname"
+            placeholder="Surname"
+            required
+            minlength="5"
+          />
+          <span class="error-msg">*The field is invalid</span>
+        </div>
+        <div class="wrapper">
+          <input type="date" name="date" required />
+          <span class="error-msg">*The field is invalid</span>
+        </div>
+      </div>
 
-      <form action="" name="address">
-        <address>
+      <div class="address">
+        <div class="wrapper">
           <input
             type="text"
             placeholder="Street"
@@ -39,18 +48,35 @@
             required
             minlength="5"
           />
+          <span class="error-msg">*The field is invalid</span>
+        </div>
+        <div class="wrapper">
           <input type="text" placeholder="House number" name="house" required />
-          <input type="text" placeholder="Flat number" name="flat" required />
-        </address>
-      </form>
+          <span class="error-msg">*The field is invalid</span>
+        </div>
+        <div class="wrapper">
+          <input
+            type="text"
+            placeholder="Flat number"
+            name="flat"
+            required
+            autocomplete="off"
+          />
+          <span class="error-msg">*The field is invalid</span>
+        </div>
+      </div>
 
       <div class="radio-btns">
         <p>Choose the payment type</p>
-        <label for=""><input type="radio" name="payment" checked />Card</label>
-        <label for=""><input type="radio" name="payment" />Cash</label>
+        <label for="card"
+          ><input id="card" type="radio" name="payment" checked />Card</label
+        >
+        <label for="cash"
+          ><input id="cash" type="radio" name="payment" />Cash</label
+        >
       </div>
 
-      <form name="gifts">
+      <div class="gifts">
         <fieldset>
           <legend>Choose 2 gifts</legend>
 
@@ -67,9 +93,11 @@
             ><input type="checkbox" name="gift" />Branded pen or pencil</label
           >
         </fieldset>
-      </form>
-      <button type="submit" disabled>Complete order</button>
-    </section>
+      </div>
+      <button id="submit" type="submit" disabled>Complete order</button
+      ><span id="invalid"></span>
+    </form>
+
     <script src="./order.js"></script>
   </body>
 </html>

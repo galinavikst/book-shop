@@ -10,4 +10,11 @@
 
 .error {
   border-color: #ff0000;
+  border-radius: 4px;
+}
+.error-msg {
+  display: none;
+  position: relative;
+  top: -13px;
+  color: #ff0000;
 }
