@@ -96,6 +96,8 @@ bagBox.className = "bag-box";
 let bagTitle = document.createElement("p");
 bagTitle.className = "bag-title";
 bagTitle.innerHTML = "My bag";
+let bagList = document.createElement("ul");
+bagList.className = "bag-list";
 let confirmOrderLink = document.createElement("a");
 confirmOrderLink.className = "confirm-order-link";
 confirmOrderLink.innerHTML = "Confirm order";
@@ -107,7 +109,9 @@ total.className = "total";
 document.body.append(h1);
 contentBox.append(ul);
 contentBox.append(bagBox);
+
 bagBox.append(bagTitle);
+bagBox.append(bagList);
 bagBox.append(total);
 bagBox.append(confirmOrderLink);
 
@@ -128,11 +132,14 @@ let bookItem, // book item elements
 for (let i = 0; i < booksData.length; i++) {
   bookItem = document.createElement("li");
   bookItem.className = "book-item";
+  bookItem.setAttribute("draggable", "true");
+  bookItem.setAttribute("id", booksData[i].title);
   bookItem.dataset.title = booksData[i].title;
   imgContainer = document.createElement("div");
   imgContainer.className = "img-container";
   bookImg = document.createElement("img");
   bookImg.className = "book-img";
+  bookImg.setAttribute("draggable", "false");
   bookImg.alt = "book title";
   bookImg.src = booksData[i].imageLink;
   bookInfo = document.createElement("div");
@@ -181,7 +188,7 @@ for (let i = 0; i < booksData.length; i++) {
 fragment.append(contentBox);
 
 document.body.append(fragment);
-
+/////////popup description////////
 let showMoreArr = document.querySelectorAll(".show-more-btn");
 console.log(showMoreArr);
 for (let i = 0; i < showMoreArr.length; i++) {
@@ -190,7 +197,6 @@ for (let i = 0; i < showMoreArr.length; i++) {
     showMoreArr[i].nextSibling.classList.add("open");
   }
 }
-
 let closeBtnArr = document.querySelectorAll(".close-btn");
 console.log(closeBtnArr);
 for (let i = 0; i < closeBtnArr.length; i++) {
@@ -199,7 +205,8 @@ for (let i = 0; i < closeBtnArr.length; i++) {
     closeBtnArr[i].parentElement.classList.toggle("open");
   }
 }
-
+///////////////////
+/////////add to bag by btn click ///////
 let bagBtnArr = document.querySelectorAll(".bag-btn");
 contentBox.addEventListener("click", function (event) {
   let btn = event.target; //where was click
@@ -212,16 +219,14 @@ contentBox.addEventListener("click", function (event) {
     }
   }
 });
-
 function createBagItem(obj) {
   let bagObj = {};
   bagObj.title = obj.title;
   bagObj.author = obj.author;
   bagObj.price = obj.price;
 
-  bagItem = document.createElement("div");
+  bagItem = document.createElement("li");
   bagItem.className = "bag-item";
-
   bagCard = document.createElement("div");
   bagCard.className = "bag-card";
   bagCard.innerHTML = `${obj.author}<br/>${obj.title}<br/><span id="${obj.price}">${obj.price}</span>$`;
@@ -231,11 +236,51 @@ function createBagItem(obj) {
   deleteBtn.innerHTML = `&#10006;`;
   bagItem.append(bagCard);
   bagItem.append(deleteBtn);
-  bagBox.insertBefore(bagItem, total);
+  bagList.append(bagItem);
   getTotal(obj.price);
   deleteItem();
 }
+/////////////////
+/////drag and drop////
+let dropZone = document.querySelector(".bag-box");
+let dragArr = document.querySelectorAll(".book-item");
+let dropPrice;
+dropZone.ondragover = (event) => event.preventDefault(); ///allow drop
 
+for (let item of dragArr) {
+  item.addEventListener("dragstart", function (event) {
+    let dragItem = event.target; // where was dragstart
+    for (let book of booksData) {
+      if (dragItem.id === book.title) {
+        let bagObj = {};
+        bagObj.title = book.title;
+        bagObj.author = book.author;
+        bagObj.price = book.price;
+
+        bagItem = document.createElement("li");
+        bagItem.className = "bag-item";
+
+        bagCard = document.createElement("div");
+        bagCard.className = "bag-card";
+        bagCard.innerHTML = `${bagObj.author}<br/>${bagObj.title}<br/><span id="${bagObj.price}">${bagObj.price}</span>$`;
+        console.log(bagObj);
+        dropPrice = bagObj.price;
+      }
+    }
+  });
+}
+dropZone.addEventListener("drop", function () {
+  deleteBtn = document.createElement("button");
+  deleteBtn.className = "delete-btn";
+  deleteBtn.innerHTML = `&#10006;`;
+  bagItem.append(bagCard);
+  bagItem.append(deleteBtn);
+  bagList.append(bagItem);
+  getTotal(dropPrice);
+  deleteItem();
+});
+////////////
+////////total amount count////////
 let amount = 0;
 function deleteItem() {
   let deleteBtnArr = document.querySelectorAll(".delete-btn");
@@ -253,3 +298,4 @@ function getTotal(price) {
   amount += price;
   total.innerHTML = `Total: ${amount}$`;
 }
+////////////
