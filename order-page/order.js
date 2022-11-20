@@ -113,8 +113,9 @@ completeBtn.onclick = function () {
 function summarized() {
   document.querySelector(".page").innerHTML = ` <h1>The order created!</h1>
     <div class="summar">
-      <p>${streetInput.value} street, house ${houseInput.value}, flat ${flatInput.value}.</p>
-      <p>Customer ${nameInput.value} ${surnameInput.value}</p>
+      <p><b>${streetInput.value}</b> Street,</p>
+      <p>House <b>${houseInput.value}</b>, Flat <b>${flatInput.value}</b>.</p>
+      <p>Customer: <b>${nameInput.value} ${surnameInput.value}</b></p>
     </div>`;
 }
 ///////////////////////

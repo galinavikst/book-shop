@@ -2,19 +2,66 @@
   margin: 0;
   padding: 0;
 }
+body {
+  padding: 10px 0 50px;
+  background: rgb(245, 250, 240);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 .page {
-  padding: 50px 0 0 20px;
+  padding: 50px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .back-catalog-link {
+  margin: 20px;
 }
-
+input[type="text"],
+input[type="date"] {
+  margin: 10px;
+  padding: 10px;
+  width: 100%;
+}
+.radio-btns p {
+  margin: 5px 0;
+}
+.radio-btns label {
+  margin-right: 15px;
+}
+input[type="radio"] {
+  margin-right: 5px;
+}
+.gifts {
+  margin: 30px 0;
+}
+fieldset {
+  display: grid;
+  padding: 20px;
+  border-radius: 4px;
+  line-height: 0;
+}
+legend {
+  font-weight: 600;
+}
+input[type="checkbox"] {
+  margin: 10px 0;
+}
+button[type="submit"] {
+  padding: 15px;
+}
+button[type="submit"] {
+}
 .error {
   border-color: #ff0000;
   border-radius: 4px;
 }
 .error-msg {
   display: none;
-  position: relative;
-  top: -13px;
+  position: absolute;
+  margin-left: 14%;
   color: #ff0000;
+}
+.summar p {
+  margin: 15px;
+  font-size: 20px;
 }

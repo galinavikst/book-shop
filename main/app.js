@@ -229,7 +229,7 @@ function createBagItem(obj) {
   bagItem.className = "bag-item";
   bagCard = document.createElement("div");
   bagCard.className = "bag-card";
-  bagCard.innerHTML = `${obj.author}<br/>${obj.title}<br/><span id="${obj.price}">${obj.price}</span>$`;
+  bagCard.innerHTML = `${obj.author}<br/><em>${obj.title}</em><br/><span id="${obj.price}">${obj.price}</span>$`;
 
   deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-btn";
@@ -262,7 +262,7 @@ for (let item of dragArr) {
 
         bagCard = document.createElement("div");
         bagCard.className = "bag-card";
-        bagCard.innerHTML = `${bagObj.author}<br/>${bagObj.title}<br/><span id="${bagObj.price}">${bagObj.price}</span>$`;
+        bagCard.innerHTML = `${bagObj.author}<br/><em>${bagObj.title}</em><br/><span id="${bagObj.price}">${bagObj.price}</span>$`;
         console.log(bagObj);
         dropPrice = bagObj.price;
       }
@@ -296,6 +296,6 @@ function deleteItem() {
 }
 function getTotal(price) {
   amount += price;
-  total.innerHTML = `Total: ${amount}$`;
+  total.innerHTML = `<b>Total:</b> ${amount}$`;
 }
 ////////////
