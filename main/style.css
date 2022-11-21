@@ -49,6 +49,7 @@
   align-items: center;
 }
 .delete-btn {
+  line-height: 1;
   margin: 10px;
   padding: 2px;
   border: none;
