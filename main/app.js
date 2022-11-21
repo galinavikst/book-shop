@@ -105,6 +105,7 @@ confirmOrderLink.setAttribute("href", "./order-page/order.html");
 let bagItem, bagCard, deleteBtn;
 let total = document.createElement("p");
 total.className = "total";
+total.style.display = "none";
 
 document.body.append(h1);
 contentBox.append(ul);
@@ -208,6 +209,7 @@ for (let i = 0; i < closeBtnArr.length; i++) {
 ///////////////////
 /////////add to bag by btn click ///////
 let bagBtnArr = document.querySelectorAll(".bag-btn");
+let confirmLink = document.querySelector(".confirm-order-link");
 contentBox.addEventListener("click", function (event) {
   let btn = event.target; //where was click
   if (!btn.dataset.title) {
@@ -218,6 +220,8 @@ contentBox.addEventListener("click", function (event) {
       createBagItem(book);
     }
   }
+  total.style.display = "block";
+  confirmLink.style.display = "block";
 });
 function createBagItem(obj) {
   let bagObj = {};
@@ -270,6 +274,8 @@ for (let item of dragArr) {
   });
 }
 dropZone.addEventListener("drop", function () {
+  confirmLink.style.display = "block";
+  total.style.display = "block";
   deleteBtn = document.createElement("button");
   deleteBtn.className = "delete-btn";
   deleteBtn.innerHTML = `&#10006;`;
@@ -297,5 +303,9 @@ function deleteItem() {
 function getTotal(price) {
   amount += price;
   total.innerHTML = `<b>Total:</b> ${amount}$`;
+  if (amount == 0) {
+    confirmLink.style.display = "none";
+    total.style.display = "none";
+  }
 }
 ////////////

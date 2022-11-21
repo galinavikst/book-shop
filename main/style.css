@@ -13,6 +13,7 @@
 }
 /* .......bag-box............ */
 .bag-title {
+  padding-bottom: 4px;
   font-size: 18px;
   font-weight: 500;
 }
@@ -26,11 +27,11 @@
   top: 20px;
 }
 .confirm-order-link {
-  display: block;
+  display: none;
   margin: 15px 0;
+  font-weight: 600;
   width: fit-content;
   color: var(--background-color);
-  text-shadow: 1px 1px 1px var(--background-color);
 }
 .confirm-order-link:hover,
 .confirm-order-link:focus {
@@ -64,13 +65,14 @@
   border-bottom: 1px, solid var(--background-color);
 }
 .total {
+  border-top: 1px solid var(--background-color);
   color: var(--accent-color);
 }
 /* ...................... */
 .page-title {
   text-align: center;
   padding: 15px 0;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   color: var(--main-bg-color);
   background: var(--background-color);
 }
@@ -86,12 +88,11 @@
 .book-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 30px;
   grid-row-gap: 60px;
+  padding-left: 15px;
 }
 .book-item {
   display: flex;
-  padding: 20px;
 }
 .book-img {
   width: 350px;

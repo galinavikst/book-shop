@@ -22,15 +22,18 @@ surnameInput.onblur = function () {
 };
 surnameInput.onfocus = () => onfocusError(surnameInput);
 
-dataInput.addEventListener("input", function () {
+dataInput.addEventListener("change", function () {
   let d = new Date();
   let inputDate = new Date(dataInput.value);
   if (inputDate <= d) {
     dataInput.className = "error";
     errorMsg(dataInput);
+    dataInput.value = "";
+    dataInput.onmouseleave = () => onmouseLeave(dataInput);
   }
 });
 dataInput.onfocus = () => onfocusError(dataInput);
+
 //////////////////////
 //////adress inputs//////////
 streetInput.onblur = function () {
@@ -51,12 +54,13 @@ houseInput.onfocus = () => onfocusError(houseInput);
 
 flatInput.addEventListener("input", function (e) {
   if ((isNaN(e.data) && e.data !== "-") || flatInput.value.startsWith("-")) {
-    console.log(flatInput.value);
-    console.log(e.data);
     flatInput.className = "error";
+    flatInput.value = "";
     errorMsg(flatInput);
   }
+  flatInput.onmouseleave = () => onmouseLeave(flatInput);
 });
+
 flatInput.onfocus = () => onfocusError(flatInput);
 /////////////////////
 //////common functions for input validation//////
@@ -69,7 +73,15 @@ function errorMsg(element) {
 function onfocusError(element) {
   let wrapper = element.parentElement;
   let span = wrapper.querySelector(":scope > span");
-  if (element.classList.contains("error")) {
+  if (element.classList.contains("error") || element.value !== "") {
+    element.classList.remove("error");
+    span.style = "display: none";
+  }
+}
+function onmouseLeave(element) {
+  let wrapper = element.parentElement;
+  let span = wrapper.querySelector(":scope > span");
+  if (element.classList.contains("error") || element.value !== "") {
     element.classList.remove("error");
     span.style = "display: none";
   }
@@ -92,19 +104,20 @@ function limitCheckb() {
 ////////complete btn active/////
 let requiredArr = Array.from(document.querySelectorAll("[required]"));
 let completeBtn = document.querySelector("#submit");
-function validate() {
-  function isComplete() {
-    if (
-      requiredArr.some((input) => input.value == "") ||
-      requiredArr.some((input) => input.classList.contains("error"))
-    ) {
-      return true;
-    }
-    return false;
+function isComplete() {
+  if (
+    requiredArr.some((input) => input.value == "") ||
+    requiredArr.some((input) => input.classList.contains("error"))
+  ) {
+    return true;
   }
+  return false;
+}
+function validate() {
   completeBtn.disabled = isComplete();
 }
-form.addEventListener("input", validate);
+
+form.addEventListener("change", validate);
 //////////////
 ////////////// summarazed information////////
 completeBtn.onclick = function () {
