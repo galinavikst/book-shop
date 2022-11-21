@@ -23,7 +23,6 @@ input[type="date"] {
   padding: 10px;
 }
 input[type="date"] {
-  width: -webkit-fill-available;
 }
 .radio-btns p {
   margin: 5px 0;
