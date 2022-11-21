@@ -12,7 +12,7 @@ nameInput.onblur = function () {
     errorMsg(nameInput);
   }
 };
-nameInput.onfocus = () => onfocusError(nameInput);
+nameInput.onfocus = () => removeError(nameInput);
 
 surnameInput.onblur = function () {
   if (surnameInput.value.includes(" ") || surnameInput.value.length < 5) {
@@ -20,7 +20,7 @@ surnameInput.onblur = function () {
     errorMsg(surnameInput);
   }
 };
-surnameInput.onfocus = () => onfocusError(surnameInput);
+surnameInput.onfocus = () => removeError(surnameInput);
 
 dataInput.addEventListener("change", function () {
   let d = new Date();
@@ -29,10 +29,10 @@ dataInput.addEventListener("change", function () {
     dataInput.className = "error";
     errorMsg(dataInput);
     dataInput.value = "";
-    dataInput.onmouseleave = () => onmouseLeave(dataInput);
+    dataInput.onmouseleave = () => removeError(dataInput);
   }
 });
-dataInput.onfocus = () => onfocusError(dataInput);
+dataInput.onfocus = () => removeError(dataInput);
 
 //////////////////////
 //////adress inputs//////////
@@ -42,7 +42,7 @@ streetInput.onblur = function () {
     errorMsg(streetInput);
   }
 };
-streetInput.onfocus = () => onfocusError(streetInput);
+streetInput.onfocus = () => removeError(streetInput);
 
 houseInput.onblur = function () {
   if (isNaN(houseInput.value) || houseInput.value <= 0) {
@@ -50,7 +50,7 @@ houseInput.onblur = function () {
     errorMsg(houseInput);
   }
 };
-houseInput.onfocus = () => onfocusError(houseInput);
+houseInput.onfocus = () => removeError(houseInput);
 
 flatInput.addEventListener("input", function (e) {
   if ((isNaN(e.data) && e.data !== "-") || flatInput.value.startsWith("-")) {
@@ -58,10 +58,10 @@ flatInput.addEventListener("input", function (e) {
     flatInput.value = "";
     errorMsg(flatInput);
   }
-  flatInput.onmouseleave = () => onmouseLeave(flatInput);
+  flatInput.onmouseleave = () => removeError(flatInput);
 });
 
-flatInput.onfocus = () => onfocusError(flatInput);
+flatInput.onfocus = () => removeError(flatInput);
 /////////////////////
 //////common functions for input validation//////
 function errorMsg(element) {
@@ -70,15 +70,7 @@ function errorMsg(element) {
   span.style = "display: inline";
 }
 
-function onfocusError(element) {
-  let wrapper = element.parentElement;
-  let span = wrapper.querySelector(":scope > span");
-  if (element.classList.contains("error") || element.value !== "") {
-    element.classList.remove("error");
-    span.style = "display: none";
-  }
-}
-function onmouseLeave(element) {
+function removeError(element) {
   let wrapper = element.parentElement;
   let span = wrapper.querySelector(":scope > span");
   if (element.classList.contains("error") || element.value !== "") {
@@ -104,6 +96,9 @@ function limitCheckb() {
 ////////complete btn active/////
 let requiredArr = Array.from(document.querySelectorAll("[required]"));
 let completeBtn = document.querySelector("#submit");
+function validate() {
+  completeBtn.disabled = isComplete();
+}
 function isComplete() {
   if (
     requiredArr.some((input) => input.value == "") ||
@@ -113,10 +108,6 @@ function isComplete() {
   }
   return false;
 }
-function validate() {
-  completeBtn.disabled = isComplete();
-}
-
 form.addEventListener("change", validate);
 //////////////
 ////////////// summarazed information////////

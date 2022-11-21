@@ -91,19 +91,26 @@ contentBox.className = "content-box";
 let ul = document.createElement("ul");
 ul.className = "book-list";
 
-let bagBox = document.createElement("div"); //bag elements
+let bagBox, //bag elements
+  bagTitle,
+  bagList,
+  confirmOrderLink,
+  bagItem,
+  bagCard,
+  deleteBtn,
+  total;
+bagBox = document.createElement("div");
 bagBox.className = "bag-box";
-let bagTitle = document.createElement("p");
+bagTitle = document.createElement("p");
 bagTitle.className = "bag-title";
 bagTitle.innerHTML = "My bag 🎒";
-let bagList = document.createElement("ul");
+bagList = document.createElement("ul");
 bagList.className = "bag-list";
-let confirmOrderLink = document.createElement("a");
+confirmOrderLink = document.createElement("a");
 confirmOrderLink.className = "confirm-order-link";
 confirmOrderLink.innerHTML = "👉🏻Confirm order";
 confirmOrderLink.setAttribute("href", "./order-page/order.html");
-let bagItem, bagCard, deleteBtn;
-let total = document.createElement("p");
+total = document.createElement("p");
 total.className = "total";
 total.style.display = "none";
 
@@ -187,7 +194,6 @@ for (let i = 0; i < booksData.length; i++) {
   ul.append(bookItem);
 }
 fragment.append(contentBox);
-
 document.body.append(fragment);
 /////////popup description////////
 let showMoreArr = document.querySelectorAll(".show-more-btn");
@@ -208,6 +214,8 @@ for (let i = 0; i < closeBtnArr.length; i++) {
 }
 ///////////////////
 /////////add to bag by btn click ///////
+let dropPrice;
+
 let bagBtnArr = document.querySelectorAll(".bag-btn");
 let confirmLink = document.querySelector(".confirm-order-link");
 contentBox.addEventListener("click", function (event) {
@@ -218,11 +226,30 @@ contentBox.addEventListener("click", function (event) {
   for (let book of booksData) {
     if (btn.dataset.title === book.title) {
       createBagItem(book);
+      appendToBag();
     }
   }
   total.style.display = "block";
   confirmLink.style.display = "block";
 });
+/////////////////
+/////drag and drop////
+let dropZone = document.querySelector(".bag-box");
+let dragArr = document.querySelectorAll(".book-item");
+dropZone.ondragover = (event) => event.preventDefault(); ///allow drop
+for (let item of dragArr) {
+  item.addEventListener("dragstart", function (event) {
+    let dragItem = event.target; // where was dragstart
+    for (let book of booksData) {
+      if (dragItem.id === book.title) {
+        createBagItem(book);
+      }
+    }
+  });
+}
+dropZone.ondrop = appendToBag;
+///////////////////////////
+//////////common fn add to bag//////////
 function createBagItem(obj) {
   let bagObj = {};
   bagObj.title = obj.title;
@@ -233,47 +260,10 @@ function createBagItem(obj) {
   bagItem.className = "bag-item";
   bagCard = document.createElement("div");
   bagCard.className = "bag-card";
-  bagCard.innerHTML = `${obj.author}<br/><em>${obj.title}</em><br/><span id="${obj.price}">${obj.price}</span>$`;
-
-  deleteBtn = document.createElement("button");
-  deleteBtn.className = "delete-btn";
-  deleteBtn.innerHTML = `&#10006;`;
-  bagItem.append(bagCard);
-  bagItem.append(deleteBtn);
-  bagList.append(bagItem);
-  getTotal(obj.price);
-  deleteItem();
+  bagCard.innerHTML = `${bagObj.author}<br/><em>${bagObj.title}</em><br/><span id="${bagObj.price}">${bagObj.price}</span>$`;
+  dropPrice = bagObj.price;
 }
-/////////////////
-/////drag and drop////
-let dropZone = document.querySelector(".bag-box");
-let dragArr = document.querySelectorAll(".book-item");
-let dropPrice;
-dropZone.ondragover = (event) => event.preventDefault(); ///allow drop
-
-for (let item of dragArr) {
-  item.addEventListener("dragstart", function (event) {
-    let dragItem = event.target; // where was dragstart
-    for (let book of booksData) {
-      if (dragItem.id === book.title) {
-        let bagObj = {};
-        bagObj.title = book.title;
-        bagObj.author = book.author;
-        bagObj.price = book.price;
-
-        bagItem = document.createElement("li");
-        bagItem.className = "bag-item";
-
-        bagCard = document.createElement("div");
-        bagCard.className = "bag-card";
-        bagCard.innerHTML = `${bagObj.author}<br/><em>${bagObj.title}</em><br/><span id="${bagObj.price}">${bagObj.price}</span>$`;
-        console.log(bagObj);
-        dropPrice = bagObj.price;
-      }
-    }
-  });
-}
-dropZone.addEventListener("drop", function () {
+function appendToBag() {
   confirmLink.style.display = "block";
   total.style.display = "block";
   deleteBtn = document.createElement("button");
@@ -284,7 +274,7 @@ dropZone.addEventListener("drop", function () {
   bagList.append(bagItem);
   getTotal(dropPrice);
   deleteItem();
-});
+}
 ////////////
 ////////total amount count////////
 let amount = 0;
