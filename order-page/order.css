@@ -23,6 +23,7 @@ input[type="date"] {
   padding: 10px;
 }
 input[type="date"] {
+  width: -webkit-fill-available;
 }
 .radio-btns p {
   margin: 5px 0;
@@ -46,7 +47,7 @@ legend {
   font-weight: 600;
 }
 input[type="checkbox"] {
-  margin: 10px 0;
+  margin: 10px 5px 10px 0;
 }
 button[type="submit"] {
   padding: 15px;

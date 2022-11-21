@@ -12,66 +12,6 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: var(--main-bg-color);
 }
-/* .......bag-box............ */
-.bag-title {
-  padding-bottom: 4px;
-  font-size: 18px;
-  font-weight: 500;
-}
-.bag-box {
-  padding: 15px;
-  width: 100%;
-  height: fit-content;
-  background-color: var(--secondary-bg-color);
-  box-shadow: 1px 2px 4px var(--background-color);
-  position: sticky;
-  top: 20px;
-}
-.confirm-order-link {
-  display: none;
-  text-decoration: none;
-  margin: 15px 0;
-  font-weight: 600;
-  width: fit-content;
-  color: var(--background-color);
-}
-.confirm-order-link:hover,
-.confirm-order-link:focus {
-  color: var(--accent-color);
-}
-.bag-ul {
-  list-style: none;
-}
-.bag-item {
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.delete-btn {
-  line-height: 1;
-  margin: 10px;
-  padding: 2px;
-  border: none;
-  border-radius: 4px;
-  color: var(--main-bg-color);
-  background-color: var(--accent-color);
-}
-.delete-btn:hover,
-.delete-btn:focus {
-  font-size: 16px;
-  cursor: pointer;
-  opacity: 0.8;
-}
-
-.bag-card {
-  padding-right: 10px;
-}
-.total {
-  border-top: 1px solid var(--background-color);
-  color: var(--accent-color);
-}
-/* ...................... */
 .page-title {
   width: 1900px;
   text-align: center;
@@ -90,7 +30,6 @@
   width: 1600px;
   margin: 0 auto;
 }
-
 .book-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -166,8 +105,67 @@
   color: var(--main-bg-color);
   background-color: var(--background-color);
 }
-
 .open {
   display: block;
   z-index: 1;
 }
+/* ...................... */
+/* .......bag-box............ */
+.bag-title {
+  padding-bottom: 4px;
+  font-size: 18px;
+  font-weight: 500;
+}
+.bag-box {
+  padding: 15px;
+  width: 100%;
+  height: fit-content;
+  background-color: var(--secondary-bg-color);
+  box-shadow: 1px 2px 4px var(--background-color);
+  position: sticky;
+  top: 20px;
+}
+.confirm-order-link {
+  display: none;
+  text-decoration: none;
+  margin: 15px 0;
+  font-weight: 600;
+  width: fit-content;
+  color: var(--background-color);
+}
+.confirm-order-link:hover,
+.confirm-order-link:focus {
+  color: var(--accent-color);
+}
+.bag-ul {
+  list-style: none;
+}
+.bag-item {
+  margin: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.delete-btn {
+  line-height: 1;
+  margin: 10px;
+  padding: 2px;
+  border: none;
+  border-radius: 4px;
+  color: var(--main-bg-color);
+  background-color: var(--background-color);
+}
+.delete-btn:hover,
+.delete-btn:focus {
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+.bag-card {
+  padding-right: 10px;
+}
+.total {
+  border-top: 1px solid var(--background-color);
+  color: var(--accent-color);
+}
+/* ...................... */
