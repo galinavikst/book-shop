@@ -19,7 +19,7 @@
 }
 .bag-box {
   padding: 15px;
-  width: 650px;
+  width: 100%;
   height: fit-content;
   background-color: whitesmoke;
   box-shadow: 1px 1px 10px var(--background-color);
@@ -28,6 +28,7 @@
 }
 .confirm-order-link {
   display: none;
+  text-decoration: none;
   margin: 15px 0;
   font-weight: 600;
   width: fit-content;
@@ -62,7 +63,7 @@
 }
 
 .bag-card {
-  border-bottom: 1px, solid var(--background-color);
+  padding-right: 10px;
 }
 .total {
   border-top: 1px solid var(--background-color);
@@ -93,6 +94,8 @@
 }
 .book-item {
   display: flex;
+  width: 665px;
+  margin-right: 20px;
 }
 .book-img {
   width: 350px;

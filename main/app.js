@@ -95,12 +95,12 @@ let bagBox = document.createElement("div"); //bag elements
 bagBox.className = "bag-box";
 let bagTitle = document.createElement("p");
 bagTitle.className = "bag-title";
-bagTitle.innerHTML = "My bag";
+bagTitle.innerHTML = "My bag 🧺";
 let bagList = document.createElement("ul");
 bagList.className = "bag-list";
 let confirmOrderLink = document.createElement("a");
 confirmOrderLink.className = "confirm-order-link";
-confirmOrderLink.innerHTML = "Confirm order";
+confirmOrderLink.innerHTML = "👉🏻Confirm order";
 confirmOrderLink.setAttribute("href", "./order-page/order.html");
 let bagItem, bagCard, deleteBtn;
 let total = document.createElement("p");

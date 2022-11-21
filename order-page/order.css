@@ -22,6 +22,9 @@ input[type="date"] {
   margin: 10px;
   padding: 10px;
 }
+input[type="date"] {
+  width: -webkit-fill-available;
+}
 .radio-btns p {
   margin: 5px 0;
 }
@@ -48,8 +51,6 @@ input[type="checkbox"] {
 }
 button[type="submit"] {
   padding: 15px;
-}
-button[type="submit"] {
 }
 .error {
   border-color: #ff0000;
