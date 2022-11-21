@@ -9,11 +9,12 @@
   --accent-color: #ed6767;
 }
 .page {
+  width: 1600px;
+  margin: 0 auto;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: var(--main-bg-color);
 }
 .page-title {
-  width: 1900px;
   text-align: center;
   padding: 15px 0;
   margin-bottom: 60px;
@@ -27,8 +28,6 @@
 }
 .content-box {
   display: flex;
-  width: 1600px;
-  margin: 0 auto;
 }
 .book-list {
   display: grid;
