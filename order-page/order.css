@@ -52,6 +52,9 @@ input[type="checkbox"] {
 button[type="submit"] {
   padding: 15px;
 }
+.wrapper {
+  position: relative;
+}
 .error {
   border-color: #ff0000;
   border-radius: 4px;
@@ -59,7 +62,8 @@ button[type="submit"] {
 .error-msg {
   display: none;
   position: absolute;
-  margin-left: 11%;
+  margin-left: 96%;
+  white-space: nowrap;
   color: #ff0000;
 }
 .summar p {
