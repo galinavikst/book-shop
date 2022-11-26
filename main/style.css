@@ -42,11 +42,13 @@
 .book-img {
   width: 300px;
   height: 400px;
+  margin-left: 10px;
   border: 1px solid var(--background-color);
   border-radius: 2px;
+  box-shadow: 3px 2px 0 #d8d6d6, 6px 4px 0 #808080;
 }
 .book-info {
-  padding-left: 10px;
+  padding-left: 13px;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
