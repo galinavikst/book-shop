@@ -83,6 +83,8 @@ let booksData = [
 ];
 document.body.className = "page";
 let fragment = new DocumentFragment();
+let hero = document.createElement("div");
+hero.className = "hero";
 let h1 = document.createElement("h1");
 h1.className = "page-title";
 h1.innerHTML = "Book catalog";
@@ -103,7 +105,7 @@ bagBox = document.createElement("div");
 bagBox.className = "bag-box";
 bagTitle = document.createElement("p");
 bagTitle.className = "bag-title";
-bagTitle.innerHTML = "My bag 🎒";
+bagTitle.innerHTML = "My bag";
 bagList = document.createElement("ul");
 bagList.className = "bag-list";
 confirmOrderLink = document.createElement("a");
@@ -114,7 +116,8 @@ total = document.createElement("p");
 total.className = "total";
 total.style.display = "none";
 
-document.body.append(h1);
+document.body.append(hero);
+hero.append(h1);
 contentBox.append(ul);
 contentBox.append(bagBox);
 
